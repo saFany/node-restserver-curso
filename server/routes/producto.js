@@ -15,8 +15,8 @@ app.get('/productos', (req, res) => {
     let desde = req.query.desde || 0;
     let hasta = req.query.hasta || 10;
     Producto.find({ disponible: true })
-        .skip(desde)
-        .limit(hasta)
+        .skip(Number(desde))
+        .limit(Number(hasta))
         .populate('usuario', 'nombre email')
         .populate('categoria', 'descripcion')
         .exec((err, productosDB) => {
